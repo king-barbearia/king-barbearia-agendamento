@@ -382,6 +382,7 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+  height: 30px;
   width: 100%;
   background-color: var(--cor--cinza-escuro);
   text-align: center;
@@ -390,223 +391,235 @@ footer {
   z-index: 3;
 }
 
-/* Media Queries para responsividade */
-@media (max-width: 768px) {
-  .header-image {
-    width: 50%;
-    height: 20vh;
-  }
+span.close {
+  color: var(--cor--cinza-escuro);
+  margin: -40px;
+  font-size: 35px;
+  cursor: pointer;
+}
 
-  #name h1,
-  #name p {
-    margin: 20px;
+#scheduleForm {
+  display: grid;
+  width: 250px;
+  text-align: center;
+  input {
+    border-radius: 4px;
     text-align: center;
+    margin-bottom: 14px;
+    height: 30px;
+    font-weight: 600;
+    border: 2px solid var(--cor--cinza-escuro); /* Define a cor da borda */
+    background-color: var(--cor--cinza);
+    color: var(--cor--cinza-escuro);
   }
-
-  #midiasocial {
-    margin-right: 0;
-    margin-top: 10px;
+  placeholder {
+    color: var(--cor--cinza-escuro);
+  }
+  select {
+    border-radius: 4px;
     text-align: center;
+    height: 30px;
+    background-color: var(--cor--cinza);
+    color: var(--cor--cinza-escuro);
+    font-weight: 600;
+    border: 2px solid var(--cor--cinza-escuro); /* Define a cor da borda */
+    margin-bottom: 8px;
   }
-
-  .nav-list {
-    flex-direction: column;
-    align-items: center;
+  button {
+    width: 200px;
+    height: 30px;
+    margin-left: 25px;
+    border-radius: 4px;
+    background-color: var(--cor--cinza);
+    color: var(--cor--cinza-escuro);
+    font-weight: 600;
+    border: 2px solid var(--cor--cinza);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
   }
-
-  .nav-list li {
-    margin: 10px 0;
-  }
-
-  #services {
-    margin: 20px;
-  }
-
-  #agendar {
-    margin: 0;
-    text-align: center;
-  }
-
-  #agendar button {
-    position: static;
-    margin: 10px 0;
-    width: auto;
-  }
-
-  .image-container div {
-    margin-bottom: 10px;
-  }
-
-  #portfolio {
-    margin: 20px;
-    line-height: 1.5;
-  }
-
-  #foto1 img,
-  #foto2 img,
-  #foto3 img,
-  #foto4 img,
-  #foto5 img,
-  #foto6 img {
-    width: 100%;
-    height: auto;
-  }
-
-  #evaluation h1 {
-    margin: 20px;
-    font-size: 24px;
-  }
-
-  #nota {
-    margin: 10px;
-    display: block;
-  }
-
-  #nota .estrelanota {
-    margin: 2px;
-  }
-
-  .status-bar {
-    width: 100%;
-    margin-top: 5px;
-  }
-
-  #navigate-button {
-    margin: 20px;
-    width: auto;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .vertical-line {
-    display: none;
-  }
-
-  .horizontal-line {
-    width: 90%;
-  }
-
-  .funcionamento {
-    margin-left: 0;
-    text-align: center;
-  }
-
-  #horas {
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  footer {
-    position: static;
+  label {
+    color: var(--cor--cinza);
+    font-weight: 500;
   }
 }
 
-@media (max-width: 480px) {
-  .header-image {
-    width: 70%;
-    height: 15vh;
+.login {
+  font-weight: 600;
+  color: var(--cor--cinza);
+  display: grid;
+  text-align: center;
+  margin-bottom: 100px;
+  border: 2px solid var(--cor--cinza); /* Borda preta com 2px de espessura */
+  padding: 20px; /* Espaço interno da div */
+  border-radius: 8px; /* Bordas arredondadas */
+  width: 300px; /* Largura do formulário */
+  margin: 40px auto 70px; /* Centralizar a div */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para um efeito 3D */
+  background-color: var(--cor--cinza-escuro);
+  padding: 20px; /* Espaço interno da div */
+  span {
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    margin: 20px;
   }
-
-  #name h1,
-  #name p {
-    margin: 10px;
+  input {
     text-align: center;
+    background-color: var(--cor--cinza);
+    border: 2px solid var(--cor--cinza); /* Define a cor da borda */
+    margin-bottom: 10px;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--cor--cinza-escuro);
+    placeholder {
+      color: var(--cor--cinza-escuro);
+    }
   }
+  button {
+    background-color: var(--cor--cinza);
+    border-radius: 4px;
+    color: var(--cor--cinza-escuro);
+    border: 2px solid var(--cor--cinza);
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 24px;
+    width: 200px;
+    margin: 25px;
+    font-weight: 600;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    /* margin: 14px 4px; */
+    margin-bottom: 40px;
+    margin-left: -69px;
+  }
+}
 
-  #midiasocial {
-    margin-top: 5px;
+.cadastro {
+  font-weight: 600;
+  color: var(--cor--cinza);
+  display: grid;
+  text-align: center;
+  margin-bottom: 100px;
+  border: 2px solid var(--cor--cinza); /* Borda preta com 2px de espessura */
+  padding: 20px; /* Espaço interno da div */
+  border-radius: 8px; /* Bordas arredondadas */
+  width: 300px; /* Largura do formulário */
+  margin: 40px auto 70px; /* Centralizar a div */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para um efeito 3D */
+  background-color: var(--cor--cinza-escuro);
+  padding: 20px; /* Espaço interno da div */
+  span {
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  input {
     text-align: center;
+    background-color: var(--cor--cinza);
+    border: 2px solid var(--cor--cinza); /* Define a cor da borda */
+    margin-bottom: 10px;
+    height: 30px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--cor--cinza-escuro);
+    placeholder {
+      color: var(--cor--cinza-escuro);
+    }
   }
+  button {
+    background-color: var(--cor--cinza);
+    border-radius: 4px;
+    color: var(--cor--cinza-escuro);
+    border: 2px solid var(--cor--cinza);
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 24px;
+    width: 200px;
+    margin: 25px;
+    font-weight: 600;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    margin: 14px 4px;
+  }
+}
 
-  .nav-list {
-    flex-direction: column;
-    align-items: center;
-  }
+button:active {
+  background-color: var(--cor--cinza-escuro); /* Cor de fundo ao ser clicado */
+}
 
-  .nav-list li {
-    margin: 5px 0;
-  }
+/* CSS para o modal */
+.modal {
+  display: none; /* Oculta o modal por padrão */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
+}
 
-  #services {
-    margin: 10px;
+.modal-content {
+  background-color: var(--cor--cinza-escuro);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid var(--cor--cinza);
+  width: 80%;
+  max-width: 300px;
+  border-radius: 10px;
+  text-align: center;
+  h2 {
+    position: relative;
+    margin-left: -10px;
+    color: var(--cor--cinza);
+    margin-bottom: 35px;
   }
+  button {
+    margin-top: 13px;
+    width: 120px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #bdbdbd;
+    font-weight: 500;
+    color: #232323;
+    border-color: #bdbdbd;
+    cursor: pointer;
+  }
+  button:active {
+    background-color: #23232388; /* Cor de fundo ao ser clicado */
+  }
+}
 
-  #agendar {
-    margin: 0;
-    text-align: center;
-  }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  #agendar button {
-    position: static;
-    margin: 5px 0;
-    width: auto;
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  .image-container div {
-    margin-bottom: 5px;
-  }
-
-  #portfolio {
-    margin: 10px;
-    line-height: 1.2;
-  }
-
-  #foto1 img,
-  #foto2 img,
-  #foto3 img,
-  #foto4 img,
-  #foto5 img,
-  #foto6 img {
-    width: 100%;
-    height: auto;
-  }
-
-  #evaluation h1 {
-    margin: 10px;
-    font-size: 20px;
-  }
-
-  #nota {
-    margin: 5px;
-    display: block;
-  }
-
-  #nota .estrelanota {
-    margin: 1px;
-  }
-
-  .status-bar {
-    width: 100%;
-    margin-top: 5px;
-  }
-
-  #navigate-button {
-    margin: 10px;
-    width: auto;
-    padding: 10px;
-    font-size: 12px;
-  }
-
-  .vertical-line {
-    display: none;
-  }
-
-  .horizontal-line {
-    width: 90%;
-  }
-
-  .funcionamento {
-    margin-left: 0;
-    text-align: center;
-  }
-
-  #horas {
-    margin: 10px 0;
-    text-align: center;
-  }
-
-  footer {
-    position: static;
-    z-index: 3;
-  }
+.booking {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
 }
