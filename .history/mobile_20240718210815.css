@@ -1,0 +1,6 @@
+@media only screen and (max-width: 600px) {
+	.modal-content {
+		margin: 44px;
+        margin-top: 190px;
+	}
+}

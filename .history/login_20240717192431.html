@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      h1 {
+        color: #232323;
+        margin-left: 630px;
+      }
+      #login-form {
+        margin-top: 50px;
+      }
+    </style>
+    <title>Login De Usuarios</title>
+  </head>
+  <body>
+    <header>
+      <img
+        class="header-image"
+        src="./images/kinkbarbearia-removebg-preview.png"
+        alt=""
+      />
+    </header>
+    <div id="name">
+      <h1>King Barbearia</h1>
+      <div id="midiasocial">
+        <img
+          class="icon"
+          id="compartilhar"
+          src="./images/compartilhar.png"
+          alt="compartilhar"
+        />
+        <img class="icon" id="curtir" src="./images/coracao.png" alt="curtir" />
+      </div>
+      <p>Estrada das Lagrimas 1249, 04232-000, São Paulo</p>
+      <div class="menu">
+        <nav>
+          <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <ul class="nav-list">
+            <li>
+              <a
+                href="#"
+                onclick="toggleSection(event, 'services')"
+                style="color: #232323"
+                >Serviços</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="toggleSection(event, 'evaluation')"
+                style="color: #232323"
+                >Avaliação</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                id="portfolio-link"
+                onclick="toggleSection(event, 'portfolio')"
+                style="color: #232323"
+                >Portfolio</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                id="detalhes-link"
+                onclick="toggleSection(event, 'detalhes')"
+                style="color: #232323"
+                >Detalhes</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                id="agenda-link"
+                onclick="toggleSection(event, 'agenda')"
+                style="color: #232323"
+                >Agendamentos</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div id="login-form">
+      <h1>Login</h1>
+      <div class="login">
+        <!-- Formulário de login -->
+        <form id="loginForm" onsubmit="loginUser(event)">
+          <img
+            src="./images/kinkbarbearia-removebg-preview.png"
+            id="img-login"
+            alt=""
+          />
+          <span>Nome</span>
+          <input
+            type="text"
+            id="name-input"
+            class="nome"
+            placeholder="Digite Seu Nome"
+            required
+          />
+          <span>Telefone</span>
+          <input
+            type="text"
+            id="phone-input"
+            class="whatsapp"
+            placeholder="WhatsApp"
+            required
+          />
+          <button type="submit" class="consultar-cds">Login</button>
+        </form>
+      </div>
+    </div>
+    <footer></footer>
+    <script>
+      document.getElementById("curtir").addEventListener("click", function () {
+        if (this.src.includes("coracao.png")) {
+          this.src = "./images/coracaopreenchido.png";
+        } else {
+          this.src = "./images/coracao.png";
+        }
+      });
+
+      // Função para formatar o número de telefone
+      function formatPhoneNumber(event) {
+        let input = event.target.value.replace(/\D/g, "");
+        if (input.length > 11) input = input.substring(0, 11);
+
+        let formattedNumber = "";
+        if (input.length > 0) formattedNumber += "(" + input.substring(0, 2);
+        if (input.length > 2) formattedNumber += ") " + input.substring(2, 7);
+        if (input.length > 7) formattedNumber += "-" + input.substring(7, 11);
+
+        event.target.value = formattedNumber;
+      }
+
+      document
+        .querySelector(".whatsapp")
+        .addEventListener("input", formatPhoneNumber);
+
+      // Função para enviar dados de login para o Flask
+      function loginUser(event) {
+        event.preventDefault();
+        const name = document.getElementById("name-input").value;
+        const phone = document.getElementById("phone-input").value;
+
+        fetch("http://127.0.0.1:8000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name: name, phone: phone }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.message === "Login successful!") {
+              localStorage.setItem("loggedIn", "true");
+              window.location.href = "/index.html";
+            } else {
+              alert("Usuário ou senha inválidos. Por favor, tente novamente.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao realizar o login:", error);
+            alert(
+              "Erro ao realizar o login. Por favor, tente novamente mais tarde."
+            );
+          });
+      }
+    </script>
+  </body>
+</html>
