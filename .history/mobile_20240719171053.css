@@ -53,13 +53,14 @@
   }
   #services {
     margin: 11px;
-    margin-bottom: 150px;
+    margin-bottom: 250px;
     #valor {
       margin: -7px;
       text-wrap: nowrap;
+      #5
     }
     #agendar-btn {
-      margin: -23px 58px;
+      margin: -19px 64px;
     }
     #tempo {
       position: absolute;

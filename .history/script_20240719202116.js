@@ -72,13 +72,13 @@ document.getElementById("curtir").addEventListener("click", function () {
   }
 });
 
-document.getElementById("compartilhar").addEventListener("click", function () {
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.title);
-  const whatsappUrl = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
+ document.getElementById('compartilhar').addEventListener('click', function() {
+            const pageUrl = encodeURIComponent(window.location.href);
+            const pageTitle = encodeURIComponent(document.title);
+            const whatsappUrl = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
 
-  window.open(whatsappUrl, "_blank");
-});
+            window.open(whatsappUrl, '_blank');
+        });
 
 // Seleciona todos os botões de agendamento
 const agendarButtons = document.querySelectorAll("#agendar-btn");

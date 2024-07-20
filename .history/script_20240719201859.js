@@ -73,11 +73,22 @@ document.getElementById("curtir").addEventListener("click", function () {
 });
 
 document.getElementById("compartilhar").addEventListener("click", function () {
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.title);
-  const whatsappUrl = `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`;
-
-  window.open(whatsappUrl, "_blank");
+  if (navigator.share) {
+    navigator
+      .share({
+        title: document.title,
+        text: "Confira esta página!",
+        url: window.location.href,
+      })
+      .then(() => {
+        console.log("Página compartilhada com sucesso.");
+      })
+      .catch((error) => {
+        console.error("Erro ao compartilhar a página:", error);
+      });
+  } else {
+    alert("API de compartilhamento não é suportada neste navegador.");
+  }
 });
 
 // Seleciona todos os botões de agendamento

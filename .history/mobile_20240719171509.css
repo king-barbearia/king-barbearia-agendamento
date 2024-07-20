@@ -59,7 +59,7 @@
       text-wrap: nowrap;
     }
     #agendar-btn {
-      margin: -23px 58px;
+      margin: -19px 64px;
     }
     #tempo {
       position: absolute;
@@ -131,5 +131,8 @@
     .status-bar {
       width: 208px;
     }
+  }
+  footer {
+    margin-top: 20%;
   }
 }
