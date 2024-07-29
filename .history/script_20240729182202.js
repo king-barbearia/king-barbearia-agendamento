@@ -158,7 +158,7 @@ function submitForm(event) {
   const form = document.getElementById("scheduleForm");
   const formData = new FormData(form);
 
-  fetch("http://10.0.0.104:8000/schedule", {
+  fetch("http://127.0.0.1:8000/schedule", {
     method: "POST",
     body: JSON.stringify(Object.fromEntries(formData.entries())), // Converte FormData para objeto JSON
     headers: {
@@ -184,7 +184,7 @@ document.getElementById("scheduleForm").addEventListener("submit", submitForm);
 
 //consultar dados agenda
 function fetchBookings() {
-  fetch("http://10.0.0.104:8000/bookings")
+  fetch("http://127.0.0.1:8000/bookings")
     .then((response) => response.json())
     .then((data) => {
       const bookingsDiv = document.getElementById("bookings");

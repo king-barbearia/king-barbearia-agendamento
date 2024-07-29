@@ -158,7 +158,7 @@ function submitForm(event) {
   const form = document.getElementById("scheduleForm");
   const formData = new FormData(form);
 
-  fetch("http://10.0.0.104:8000/schedule", {
+  fetch("http://127.0.0.1:8000/schedule", {
     method: "POST",
     body: JSON.stringify(Object.fromEntries(formData.entries())), // Converte FormData para objeto JSON
     headers: {
@@ -184,7 +184,7 @@ document.getElementById("scheduleForm").addEventListener("submit", submitForm);
 
 //consultar dados agenda
 function fetchBookings() {
-  fetch("http://10.0.0.104:8000/bookings")
+  fetch("http://127.0.0.1:8000/bookings")
     .then((response) => response.json())
     .then((data) => {
       const bookingsDiv = document.getElementById("bookings");
@@ -211,4 +211,68 @@ function fetchBookings() {
     .catch((error) => {
       console.error("Erro ao buscar agendamentos:", error);
     });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  let currentTimesIndex = 0;
+  const times = generateTimes();
+  displayTimes(times, currentTimesIndex);
+
+  // Fetch the calendar and available times here
+  // Example:
+  // fetch('/api/calendar').then(response => response.json()).then(data => {
+  //   // Populate calendar and times
+  // });
+
+  function generateTimes() {
+    const times = [];
+    for (let hour = 9; hour <= 19; hour++) {
+      times.push(`${hour.toString().padStart(2, "0")}:00`);
+      if (hour !== 19) times.push(`${hour.toString().padStart(2, "0")}:30`);
+    }
+    return times;
+  }
+
+  function displayTimes(times, index) {
+    const timeSlots = document.getElementById("timeSlots");
+    timeSlots.innerHTML = "";
+
+    const endIndex = Math.min(index + 3, times.length);
+    for (let i = index; i < endIndex; i++) {
+      const timeSlot = document.createElement("div");
+      timeSlot.className = "time-slot";
+      timeSlot.textContent = times[i];
+      timeSlot.onclick = () => selectTime(times[i]);
+      timeSlots.appendChild(timeSlot);
+    }
+  }
+
+  function selectTime(time) {
+    const dateInput = document.getElementById("datetime");
+    const selectedDate = document.getElementById("calendar").value; // Adjust according to your calendar implementation
+    dateInput.value = `${selectedDate} ${time}`;
+    closeModal();
+  }
+
+  window.prevTimes = function () {
+    if (currentTimesIndex > 0) {
+      currentTimesIndex -= 3;
+      displayTimes(times, currentTimesIndex);
+    }
+  };
+
+  window.nextTimes = function () {
+    if (currentTimesIndex < times.length - 3) {
+      currentTimesIndex += 3;
+      displayTimes(times, currentTimesIndex);
+    }
+  };
+});
+
+function openModal() {
+  document.getElementById("datetimeModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("datetimeModal").style.display = "none";
 }

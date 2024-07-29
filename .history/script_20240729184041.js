@@ -158,7 +158,8 @@ function submitForm(event) {
   const form = document.getElementById("scheduleForm");
   const formData = new FormData(form);
 
-  fetch("http://10.0.0.104:8000/schedule", {
+  fetch("http://10.0.0.104:8000
+/schedule", {
     method: "POST",
     body: JSON.stringify(Object.fromEntries(formData.entries())), // Converte FormData para objeto JSON
     headers: {

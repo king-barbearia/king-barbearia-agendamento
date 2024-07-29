@@ -33,8 +33,7 @@
         />
         <img class="icon" id="curtir" src="./images/coracao.png" alt="curtir"/>
       </div>
-      <p>Estrada das Lagrimas 1249, 04232-000,<br>
-        São Paulo Heliopolis.</p>
+      <p>Estrada das Lagrimas 1249, 04232-000, São Paulo</p>
     </div>
     <div class="menu">
       <nav>
@@ -257,12 +256,21 @@
         </form>
       </div>
     </div>
-
+  <!-- Modal -->
+  <div id="datetimeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="calendar"></div>
+      <div class="time-slots" id="timeSlots"></div>
+      <button onclick="prevTimes()">Anterior</button>
+      <button onclick="nextTimes()">Próximo</button>
+    </div>
+  </div>
     <!-- Update Agenda Section -->
     <div id="agenda" style="display: none">
       <h2>Agendamentos</h2>
       <div id="bookings"></div>
-<button onclick="fetchBookings()">Mostrar Agendamentos</button>
+      <button onclick="fetchBookings()">Mostrar Agendamentos</button>
     </div>
 
     <div id="portfolio" style="display: none">
@@ -555,46 +563,6 @@
       function selectBarber(barberName) {
         document.getElementById("barber").value = barberName;
       }
-    </script>
-    <script>
-      function fetchBookings() {
-  const userName = localStorage.getItem("userName");
-  const userPhone = localStorage.getItem("userPhone");
-
-  if (!userName || !userPhone) {
-    alert("User is not logged in.");
-    return;
-  }
-
-  fetch(`http://10.0.0.104:8000
-/customer_bookings?name=${encodeURIComponent(userName)}&phone=${encodeURIComponent(userPhone)}`)
-    .then(response => response.json())
-    .then(data => {
-      const bookingsContainer = document.getElementById("bookings");
-      bookingsContainer.innerHTML = ''; // Clear existing bookings
-      
-      if (Array.isArray(data) && data.length > 0) {
-        data.forEach(booking => {
-          const bookingElement = document.createElement("div");
-          bookingElement.innerHTML = `
-            <h3>${booking.service}</h3>
-            <p>Barbeiro: ${booking.barber}</p>
-            <p>Data: ${booking.date}</p>
-            <p>Horário: ${booking.time}</p>
-            <p>Duração: ${booking.duration}</p>
-            <p>Valor: ${booking.valueservice}</p>
-          `;
-          bookingsContainer.appendChild(bookingElement);
-        });
-      } else {
-        bookingsContainer.innerHTML = "<p>No bookings found.</p>";
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching bookings:", error);
-    });
-}
-
     </script>
   </body>
 </html>

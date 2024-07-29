@@ -184,7 +184,7 @@ document.getElementById("scheduleForm").addEventListener("submit", submitForm);
 
 //consultar dados agenda
 function fetchBookings() {
-  fetch("http://10.0.0.104:8000/bookings")
+  fetch("http://127.0.0.1:8000/bookings")
     .then((response) => response.json())
     .then((data) => {
       const bookingsDiv = document.getElementById("bookings");

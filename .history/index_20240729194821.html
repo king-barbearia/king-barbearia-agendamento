@@ -262,7 +262,7 @@
     <div id="agenda" style="display: none">
       <h2>Agendamentos</h2>
       <div id="bookings"></div>
-<button onclick="fetchBookings()">Mostrar Agendamentos</button>
+
     </div>
 
     <div id="portfolio" style="display: none">
@@ -566,8 +566,7 @@
     return;
   }
 
-  fetch(`http://10.0.0.104:8000
-/customer_bookings?name=${encodeURIComponent(userName)}&phone=${encodeURIComponent(userPhone)}`)
+  fetch(`/customer_bookings?name=${encodeURIComponent(userName)}&phone=${encodeURIComponent(userPhone)}`)
     .then(response => response.json())
     .then(data => {
       const bookingsContainer = document.getElementById("bookings");

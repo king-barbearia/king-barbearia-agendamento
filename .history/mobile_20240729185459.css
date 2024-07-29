@@ -133,9 +133,8 @@
     }
   }
   #scheduleForm {
-  input {
+  input#date {
     width: 260px;
-    text-align: center;
   }
 }
 }
