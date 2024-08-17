@@ -26,10 +26,6 @@
         opacity: 0;
         cursor: pointer;
       }
-
-      .custom-file-button {
-        font-size: 10px;
-      }
     </style>
     <title>Cadastro De Usuarios</title>
   </head>
@@ -115,7 +111,7 @@
           src="./images/kinkbarbearia-removebg-preview.png"
           alt="Imagem de Pré-visualização"
         />
-        <div class="file-input-container">
+        <!-- <div class="file-input-container">
           <button
             class="custom-file-button"
             style="
@@ -135,7 +131,7 @@
             class="file-input"
             accept="image/*"
           />
-        </div>
+        </div> -->
         <span>Nome</span>
         <input
           type="text"
@@ -189,83 +185,78 @@
         .querySelector(".whatsapp")
         .addEventListener("input", formatPhoneNumber);
 
-      // Função para pré-visualizar a imagem selecionada
-      document
-        .getElementById("file-input")
-        .addEventListener("change", function (event) {
-          const file = event.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              document.getElementById("foto-preview").src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-
-      // Ativar o input file quando o botão estilizado é clicado
-      document
-        .querySelector(".custom-file-button")
-        .addEventListener("click", function () {
-          document.getElementById("file-input").click();
-        });
-
       function registerUser() {
+        // Obtenha os valores dos campos de entrada
         const name = document.getElementById("name-input").value;
         const phone = document.getElementById("phone-input").value;
         const email = document.getElementById("email-input").value;
-        const photoInput = document.getElementById("file-input");
-        const photo = photoInput.files[0];
-        const defaultPhoto = "./images/kinkbarbearia-removebg-preview.png";
 
-        // Constrói o objeto FormData para enviar os dados
+        // Verifique se os campos obrigatórios não estão vazios
+        if (!name || !phone) {
+          alert("Nome e telefone são obrigatórios.");
+          return;
+        }
+
+        // Crie um FormData e adicione os dados
         const formData = new FormData();
         formData.append("name", name);
         formData.append("phone", phone);
         formData.append("email", email);
 
-        if (photo) {
-          formData.append("photo", photo);
-        } else {
-          // Envia a URL da imagem padrão caso não haja uma imagem selecionada
-          formData.append("photoUrl", defaultPhoto);
-        }
-
-        // Realiza a requisição POST usando fetch
-        fetch("http://127.0.0.1:8000/register", {
+        // Função para enviar o formulário
+        fetch("https://KinkBarbearia.pythonanywhere.com/register", {
           method: "POST",
           body: formData,
         })
           .then((response) => {
             if (!response.ok) {
-              throw new Error("Erro ao cadastrar usuário");
+              return response.text().then((text) => {
+                console.error("Resposta do servidor:", text);
+                throw new Error("Erro ao cadastrar usuário");
+              });
             }
             return response.json();
           })
           .then((data) => {
-            alert(data.message); // Exibe a mensagem de retorno
+            if (data.message === "Usuário cadastrado com sucesso!") {
+              alert(data.message); // Exibe a mensagem de retorno
 
-            // Armazena os dados do usuário no localStorage
-            localStorage.setItem(
-              "user",
-              JSON.stringify({ name, phone, email })
-            );
-            localStorage.setItem("isRegistered", "true");
+              // Armazena os dados do usuário no localStorage
+              localStorage.setItem(
+                "user",
+                JSON.stringify({ name, phone, email })
+              );
+              localStorage.setItem("isRegistered", "true");
 
-            // Limpar os campos do formulário após o cadastro bem-sucedido
-            document.getElementById("name-input").value = "";
-            document.getElementById("phone-input").value = "";
-            document.getElementById("email-input").value = "";
-            document.getElementById("foto-preview").src = defaultPhoto;
+              // Limpar os campos do formulário após o cadastro bem-sucedido
+              document.getElementById("name-input").value = "";
+              document.getElementById("phone-input").value = "";
+              document.getElementById("email-input").value = "";
 
-            // Redireciona para a página index.html
-            window.location.href = "login.html";
+              // Redireciona para a página login.html
+              window.location.href = "login.html";
+            }
           })
           .catch((error) => {
             console.error("Erro:", error);
             alert("Erro ao cadastrar usuário");
           });
       }
+    </script>
+    <script>
+      document
+        .getElementById("name-input")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const nameInput = document.getElementById("name-input");
+        if (nameInput) {
+          nameInput.focus();
+        }
+      });
     </script>
   </body>
 </html>

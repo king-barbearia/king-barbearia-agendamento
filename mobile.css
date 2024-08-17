@@ -132,11 +132,21 @@
       width: 208px;
     }
   }
-  #scheduleForm {
-  input {
-    width: 260px;
-    text-align: center;
+  #scheduleForm,
+  #barber {
+    input,
+    select {
+      width: 260px;
+      text-align: center;
+    }
+  }
+  #availabilityModal {
+    .modal-content {
+      margin: 190px 31px;
+      height: 45%;
+    }
+  }
+  #sucessModal {
+    margin: 0px 0px;
   }
 }
-}
-

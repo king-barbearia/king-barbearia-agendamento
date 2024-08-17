@@ -80,42 +80,6 @@ document.getElementById("compartilhar").addEventListener("click", function () {
   window.open(whatsappUrl, "_blank");
 });
 
-// Seleciona todos os botões de agendamento
-const agendarButtons = document.querySelectorAll("#agendar-btn");
-
-// Adiciona um evento de clique para cada botão de agendamento
-agendarButtons.forEach((button) => {
-  button.addEventListener("click", function (event) {
-    // Evita o comportamento padrão do botão (enviar formulário)
-    event.preventDefault();
-
-    // Obtém os dados do serviço, valor e tempo da mesma div do botão clicado
-    const service = button.getAttribute("data-servico"); // Obtém o valor do data-servico
-    const value = button.parentNode.querySelector("#valor").textContent.trim();
-    const duration = button.parentNode
-      .querySelector("#tempo")
-      .textContent.trim(); // Renomeado para duration
-
-    // Fecha o elemento de serviços
-    document.getElementById("services").style.display = "none";
-
-    // Preenche o modal com os dados do serviço selecionado
-    document.querySelector("#scheduleModal").style.display = "block";
-    document.querySelector('#scheduleForm input[type="text"]').value = ""; // Limpa os campos de texto (nome e whatsapp)
-    document.querySelector("#barber").selectedIndex = 0; // Reseta o dropdown de barbeiros
-    document.querySelector("#date").value = ""; // Limpa o campo de data
-    document.querySelector("#time").value = ""; // Limpa o campo de horário
-
-    // Preenche os campos ocultos no formulário com os dados do serviço selecionado
-    document.querySelector('#scheduleForm input[name="service"]').value =
-      service;
-    document.querySelector('#scheduleForm input[name="valueservice"]').value =
-      value; // Renomeado para valueservice
-    document.querySelector('#scheduleForm input[name="duration"]').value =
-      duration; // Envia duration ao invés de time
-  });
-});
-
 // Função para fechar o modal de agendamento
 function closeModal() {
   document.querySelector("#scheduleModal").style.display = "none";
@@ -146,69 +110,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Função para enviar os dados do formulário para a rota Flask
+function parseDuration(durationString) {
+  if (!durationString) {
+    console.error("durationString is null or undefined");
+    return 0; // Retorna 0 ou outro valor padrão se a string estiver vazia
+  }
+
+  let hours = 0;
+  let minutes = 0;
+
+  // Expressão regular para encontrar horas e minutos
+  const hoursMatch = durationString.match(/(\d+)\s*h/);
+  const minutesMatch = durationString.match(/(\d+)\s*m/);
+
+  if (hoursMatch) {
+    hours = parseInt(hoursMatch[1], 10);
+  }
+  if (minutesMatch) {
+    minutes = parseInt(minutesMatch[1], 10);
+  }
+
+  return hours * 60 + minutes;
+}
+
 let isSubmitting = false;
-
-function submitForm(event) {
-  event.preventDefault();
-
-  if (isSubmitting) return;
-
-  isSubmitting = true;
-
-  const form = document.getElementById("scheduleForm");
-  const formData = new FormData(form);
-
-  fetch("http://10.0.0.104:8000/schedule", {
-    method: "POST",
-    body: JSON.stringify(Object.fromEntries(formData.entries())), // Converte FormData para objeto JSON
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Booking confirmed:", data.message);
-      // Aqui você pode adicionar lógica adicional após o agendamento ser confirmado
-      closeModal(); // Fecha o modal após o agendamento ser confirmado
-      isSubmitting = false; // Reseta o flag de submissão
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      // Aqui você pode tratar erros de requisição, se necessário
-      isSubmitting = false; // Reseta o flag de submissão
-    });
-}
-
-// Adiciona um evento de submit para o formulário
-document.getElementById("scheduleForm").addEventListener("submit", submitForm);
-
-//consultar dados agenda
-function fetchBookings() {
-  fetch("http://10.0.0.104:8000/bookings")
-    .then((response) => response.json())
-    .then((data) => {
-      const bookingsDiv = document.getElementById("bookings");
-      bookingsDiv.innerHTML = "";
-
-      data.forEach((booking) => {
-        const bookingDiv = document.createElement("div");
-        bookingDiv.classList.add("booking");
-        bookingDiv.innerHTML = `
-              <p><strong>Nome:</strong> ${booking.name}</p>
-              <p><strong>Telefone:</strong> ${booking.phone}</p>
-              <p><strong>Serviço:</strong> ${booking.service}</p>
-              <p><strong>Barbeiro:</strong> ${booking.barber}</p>
-              <p><strong>Data:</strong> ${booking.date}</p>
-              <p><strong>Hora:</strong> ${booking.time}</p>
-              <p><strong>Duração:</strong> ${booking.duration}</p>
-              <p><strong>Valor:</strong> ${booking.valueservice}</p>
-            `;
-        bookingsDiv.appendChild(bookingDiv);
-      });
-
-      document.getElementById("agenda").style.display = "block";
-    })
-    .catch((error) => {
-      console.error("Erro ao buscar agendamentos:", error);
-    });
-}

@@ -156,7 +156,7 @@
         const name = document.getElementById("name-input").value;
         const phone = document.getElementById("phone-input").value;
 
-        fetch("http://127.0.0.1:8000/login", {
+        fetch("https://KinkBarbearia.pythonanywhere.com/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -179,12 +179,13 @@
             );
           });
       }
+
       function loginUser(event) {
         event.preventDefault();
         const name = document.getElementById("name-input").value;
         const phone = document.getElementById("phone-input").value;
 
-        fetch("http://127.0.0.1:8000/login", {
+        fetch("https://KinkBarbearia.pythonanywhere.com/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -209,6 +210,13 @@
             );
           });
       }
+    </script>
+    <script>
+      document
+        .getElementById("name-input")
+        .addEventListener("input", function () {
+          this.value = this.value.toUpperCase();
+        });
     </script>
   </body>
 </html>
