@@ -13,7 +13,7 @@
   }
   header {
     height: 185px;
-    background-image: url("./images/background-image-top.png");
+    background-image: url("../images/background-image-top.png");
     background-size: cover;
   }
   .header-image {
