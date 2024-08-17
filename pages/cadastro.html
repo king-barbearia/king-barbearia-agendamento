@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="mobile.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/mobile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,7 +33,7 @@
     <header>
       <img
         class="header-image"
-        src="./images/kinkbarbearia-removebg-preview.png"
+        src="../images/kinkbarbearia-removebg-preview.png"
         alt=""
       />
     </header>
@@ -43,10 +43,10 @@
         <img
           class="icon"
           id="compartilhar"
-          src="./images/compartilhar.png"
+          src="../images/compartilhar.png"
           alt="compartilhar"
         />
-        <img class="icon" id="curtir" src="./images/coracao.png" alt="curtir" />
+        <img class="icon" id="curtir" src="../images/coracao.png" alt="curtir" />
       </div>
       <p>Estrada das Lagrimas 1249, 04232-000, São Paulo</p>
       <div class="menu">
@@ -108,7 +108,7 @@
       <div class="cadastro">
         <img
           id="foto-preview"
-          src="./images/kinkbarbearia-removebg-preview.png"
+          src="../images/kinkbarbearia-removebg-preview.png"
           alt="Imagem de Pré-visualização"
         />
         <!-- <div class="file-input-container">
@@ -159,6 +159,7 @@
       </div>
     </div>
     <footer></footer>
+    <script src="script.js"></script>
     <script>
       document.getElementById("curtir").addEventListener("click", function () {
         if (this.src.includes("coracao.png")) {
@@ -234,7 +235,7 @@
               document.getElementById("email-input").value = "";
 
               // Redireciona para a página login.html
-              window.location.href = "login.html";
+              window.location.href = "../pages/login.html";
             }
           })
           .catch((error) => {

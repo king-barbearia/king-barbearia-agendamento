@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mobile.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/mobile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,7 @@
     <header>
       <img
         class="header-image"
-        src="./images/kinkbarbearia-removebg-preview.png"
+        src="../images/kinkbarbearia-removebg-preview.png"
         alt=""
       />
     </header>
@@ -28,10 +28,10 @@
         <img
           class="icon"
           id="compartilhar"
-          src="./images/compartilhar.png"
+          src="../images/compartilhar.png"
           alt="compartilhar"
         />
-        <img class="icon" id="curtir" src="./images/coracao.png" alt="curtir" />
+        <img class="icon" id="curtir" src="../images/coracao.png" alt="curtir" />
       </div>
       <p>
         Estrada das Lagrimas 1249, 04232-000,<br />
@@ -48,19 +48,19 @@
 
         <ul class="nav-list">
           <li>
-            <a href="./index.html" class="active">Serviços</a>
+            <a href="../index.html" class="active">Serviços</a>
           </li>
           <li>
-            <a href="./index.html"> Avaliação</a>
+            <a href="../index.html"> Avaliação</a>
           </li>
           <li>
-            <a href="./index.html">Portfolio</a>
+            <a href="../index.html">Portfolio</a>
           </li>
           <li>
-            <a href="./index.html">Detalhes</a>
+            <a href="../index.html">Detalhes</a>
           </li>
           <li>
-            <a href="./agenda.html">Agendamentos</a>
+            <a href="../agenda.html">Agendamentos</a>
           </li>
         </ul>
       </nav>
@@ -68,7 +68,7 @@
     <!-- Update Agenda Section -->
     <div id="agenda">
       <img
-        src="./images/kinkbarbearia-removebg-preview.png"
+        src="../images/kinkbarbearia-removebg-preview.png"
         alt=""
         style="width: 60px; margin: 10px 13px; position: absolute"
       />
@@ -183,7 +183,7 @@
               <p>Valor: ${booking.valueservice}</p>
               <img id="ex-agenda-${
                 booking.id
-              }" style="position: absolute; margin: -108px 200px; cursor: pointer;width: 35px;" src="./images/lixeira-de-reciclagem.png"></img>
+              }" style="position: absolute; margin: -108px 200px; cursor: pointer;width: 35px;" src="../images/lixeira-de-reciclagem.png"></img>
               <p style="position: absolute;margin: -70px 193px;font-size: 14px;color: #232323;">Excluir</p>
             `;
 
@@ -273,7 +273,7 @@
         // Adiciona evento ao botão "Ok" do modal de sucesso
         const successOkBtn = document.getElementById("successOkBtn");
         successOkBtn.addEventListener("click", function () {
-          window.location.href = "index.html"; // Redireciona para index.html
+          window.location.href = "../index.html"; // Redireciona para index.html
         });
       });
     </script>

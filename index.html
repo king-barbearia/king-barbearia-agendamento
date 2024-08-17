@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mobile.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/mobile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -81,7 +81,7 @@
             >
           </li>
           <li>
-            <a href="./agenda.html" id="agenda-link">Agendamentos</a>
+            <a href="./pages/agenda.html" id="agenda-link">Agendamentos</a>
           </li>
         </ul>
       </nav>
@@ -446,7 +446,7 @@
           Agendamento Confirmado!
         </h2>
         <p style="color: #bdbdbd; font-weight: 500; font-size: 14px">Confira</p>
-        <button id="confirmBtn" href="agenda.html">Agendamentos</button>
+        <button id="confirmBtn" href="./pages/agenda.html">Agendamentos</button>
       </div>
     </div>
     <div id="deleteModal" class="modal">
@@ -514,12 +514,12 @@
 
       // Redireciona para login.html ao clicar em "Já sou cadastrado"
       loginBtn.onclick = function () {
-        window.location.href = "login.html";
+        window.location.href = "./pages/login.html";
       };
 
       // Redireciona para cadastro.html ao clicar em "Cadastre-se"
       registerBtn.onclick = function () {
-        window.location.href = "cadastro.html";
+        window.location.href = "./pages/cadastro.html";
       };
       var modal = document.getElementById("myModal");
 
@@ -547,12 +547,12 @@
 
       // Redireciona para login.html ao clicar em "Já sou cadastrado"
       loginBtn.onclick = function () {
-        window.location.href = "login.html";
+        window.location.href = "./pages/login.html";
       };
 
       // Redireciona para cadastro.html ao clicar em "Cadastre-se"
       registerBtn.onclick = function () {
-        window.location.href = "cadastro.html";
+        window.location.href = "./pages/cadastro.html";
       };
 
       document.addEventListener("DOMContentLoaded", function () {
@@ -955,7 +955,7 @@
       document
         .getElementById("confirmBtn")
         .addEventListener("click", function () {
-          window.location.href = "./agenda.html";
+          window.location.href = "./pages/agenda.html";
         });
     </script>
     <script>
