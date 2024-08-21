@@ -712,9 +712,12 @@
             console.error("No booking ID provided for deletion.");
             return;
           }
-          fetch(`https://KinkBarbearia.pythonanywhere.com/customer_bookings/${bookingId}`, {
-            method: "DELETE",
-          })
+          fetch(
+            `https://KinkBarbearia.pythonanywhere.com/customer_bookings/${bookingId}`,
+            {
+              method: "DELETE",
+            }
+          )
             .then((response) => {
               if (response.ok) {
                 alert("Booking deleted successfully.");
@@ -841,6 +844,7 @@
           altFormat: "F j, Y",
           dateFormat: "Y-m-d",
           locale: "pt",
+          disableMobile: true, // Força o uso do Flatpickr em dispositivos móveis
         });
       });
     </script>
